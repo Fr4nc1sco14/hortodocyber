@@ -227,6 +227,12 @@
   .mobile-menu a{opacity:0;transform:translateY(-6px);transition:opacity 320ms ease, transform 320ms ease}
   .mobile-menu.open a{opacity:1;transform:none}
 
+  /* animações escalonadas para os elementos dentro do menu mobile (staggered fade-in e slide-down) */
+  .mobile-menu li:nth-child(1) a { transition-delay: 0.1s; }
+  .mobile-menu li:nth-child(2) a { transition-delay: 0.2s; }
+  .mobile-menu li:nth-child(3) a { transition-delay: 0.3s; }
+  .mobile-menu li:nth-child(4) a { transition-delay: 0.4s; }
+
   /* Hero empilha em coluna */
   .hero{grid-template-columns:1fr;gap:22px}
   .hero-right img{max-height:420px}
