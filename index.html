@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Horto do Cyber — Responsivo (corrigido)</title>
+  <title>Horto do Cyber</title>
   <meta name="theme-color" content="#072414">
-
+  <link rel="shortcut icon" type="imagex/png" href="assets/images/Logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
@@ -152,17 +152,25 @@
   .marquee-item{display:inline-block;margin-right:var(--marquee-gap);padding:6px 12px}
   @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-  .gallery{padding:44px 0; opacity: 0; animation: fadeIn 1s ease forwards 2.1s;} .gallery p{max-width:820px;margin:8px auto 28px;color:#c9d7c8;text-align:center;font-size:var(--lead-size)}
+  .gallery{Padding:44px 0; opacity: 0; animation: fadeIn 1s ease forwards 2.1s;} .gallery p{max-width:820px;margin:8px auto 28px;color:#c9d7c8;text-align:center;font-size:var(--lead-size)}
 
-  /* Carousel infinito */
+  /* ===== Carousel infinito — versão robusta e com reverse ===== */
   .gallery .carousel { overflow: hidden; position: relative; margin: 0 auto; max-width: var(--container-max); }
-  .gallery .carousel-inner { display: flex; width: max-content; animation: carousel-slide var(--carousel-duration) linear infinite; }
-  .gallery .carousel:hover .carousel-inner { animation-play-state: paused; }
+  .gallery .carousel-inner { display: flex; width: max-content; will-change: transform; animation: carousel-slide var(--carousel-duration) linear infinite; }
+  /* Inverter apenas a direção para o carrossel 'reverse' */
+  .carousel.reverse .carousel-inner { animation-direction: reverse; }
+  /* animação: move metade do conteúdo (assume sequência duplicada dentro do .carousel-inner) */
+  @keyframes carousel-slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
   .gallery .gallery-item { flex: 0 0 var(--gallery-item-size); width: var(--gallery-item-size); height: var(--gallery-item-size); border-radius: var(--radius); overflow: hidden; margin-right: var(--gallery-gap); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-  .gallery .gallery-item:hover { transform: scale(1.05); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+  .gallery .gallery-item:hover { transform: none; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
   .gallery .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
   .gallery .gallery-item:hover img { transform: scale(1.1); }
-  @keyframes carousel-slide { to { transform: translateX(calc(-1 * (var(--gallery-item-size) + var(--gallery-gap)) * 6)); } }
+
+  .carousel.reverse .carousel-inner { animation-direction: reverse; }
+
+  .gallery .carousel + .carousel { margin-top: 24px;}
+
 
   .more-btn{display:inline-block;margin:20px auto 60px;background:var(--accent);color:var(--panel);padding:12px 24px;border-radius:20px;text-decoration:none;font-weight:800; transition: background 0.3s ease, transform 0.3s ease;} .more-btn:hover {background: var(--accent-hover); transform: translateY(-3px);} 
 
@@ -451,12 +459,12 @@
       <!-- improved marquee: duplicates content for continuous scroll -->
       <div class="marquee" role="status" aria-live="polite">
         <div class="marquee-track" aria-hidden="true">
-          <span class="marquee-item">Vem viver momentos que ficam na memória</span>
-          <span class="marquee-item">Descobre sabores únicos e boa energia</span>
-          <span class="marquee-item">Relaxa, partilha e brinda com amigos</span>
-          <span class="marquee-item">Vem viver momentos que ficam na memória</span>
-          <span class="marquee-item">Descobre sabores únicos e boa energia</span>
-          <span class="marquee-item">Relaxa, partilha e brinda com amigos</span>
+          <span class="marquee-item">• Vem viver momentos que ficam na memória</span>
+          <span class="marquee-item">• Descobre sabores únicos e boa energia</span>
+          <span class="marquee-item">• Relaxa, partilha e brinda com amigos</span>
+          <span class="marquee-item">• Vem viver momentos que ficam na memória</span>
+          <span class="marquee-item">• Descobre sabores únicos e boa energia</span>
+          <span class="marquee-item">• Relaxa, partilha e brinda com amigos</span>
         </div>
       </div>
 
@@ -466,12 +474,12 @@
 
       <div class="marquee" role="status" aria-live="polite">
         <div class="marquee-track" aria-hidden="true">
-          <span class="marquee-item">Vem viver momentos que ficam na memória</span>
-          <span class="marquee-item">Descobre sabores únicos e boa energia</span>
-          <span class="marquee-item">Relaxa, partilha e brinda com amigos</span>
-          <span class="marquee-item">Vem viver momentos que ficam na memória</span>
-          <span class="marquee-item">Descobre sabores únicos e boa energia</span>
-          <span class="marquee-item">Relaxa, partilha e brinda com amigos</span>
+          <span class="marquee-item">• Vem viver momentos que ficam na memória</span>
+          <span class="marquee-item">• Descobre sabores únicos e boa energia</span>
+          <span class="marquee-item">• Relaxa, partilha e brinda com amigos</span>
+          <span class="marquee-item">• Vem viver momentos que ficam na memória</span>
+          <span class="marquee-item">• Descobre sabores únicos e boa energia</span>
+          <span class="marquee-item">• Relaxa, partilha e brinda com amigos</span>
         </div>
       </div>
 
@@ -498,6 +506,24 @@
             <div class="gallery-item"><img src="assets/images/galeria/galeria6.jpg" alt="Momento 6" loading="lazy"></div>
           </div>
         </div>
+
+        <div class="carousel reverse" role="region" aria-label="Carrossel de imagens da galeria (linha 2)">
+          <div class="carousel-inner">
+            <div class="gallery-item"><img src="assets/images/galeria/galeria7.jpg" alt="Momento 7" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria8.jpg" alt="Momento 8" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria9.jpg" alt="Momento 9" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria10.jpg" alt="Momento 10" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria11.jpg" alt="Momento 11" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria12.jpg" alt="Momento 12" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria7.jpg" alt="Momento 7" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria8.jpg" alt="Momento 8" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria9.jpg" alt="Momento 9" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria10.jpg" alt="Momento 10" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria11.jpg" alt="Momento 11" loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/galeria/galeria12.jpg" alt="Momento 12" loading="lazy"></div>
+          </div>
+        </div>
+
 
         <div style="text-align:center"><a class="more-btn" href="#">Mais Momentos</a></div>
       </section>
@@ -529,15 +555,15 @@
           <div>
             <h4 style="margin:0 0 10px;color:var(--accent);">Redes Sociais</h4>
             <div class="footer-social">
-              <a class="social-btn" href="https://www.instagram.com/hortodocyber?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram" title="Instagram">
+              <a class="social-btn" href="https://www.instagram.com/hortodocyber?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram" title="Instagram" target="_blank">
                 <i class="fa-brands fa-instagram" aria-hidden="true"></i>
               </a>
 
-              <a class="social-btn" href="https://www.facebook.com/hortodocyber" aria-label="Facebook" title="Facebook">
+              <a class="social-btn" href="https://www.facebook.com/hortodocyber" aria-label="Facebook" title="Facebook" target="_blank">
                 <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
               </a>
 
-              <a class="social-btn" href="#" aria-label="LinkedIn" title="LinkedIn">
+              <a class="social-btn" href="#" aria-label="LinkedIn" title="LinkedIn" target="_blank">
                 <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
               </a>
             </div>
@@ -619,7 +645,7 @@
   (function(){
     const marquees = document.querySelectorAll('.marquee');
     marquees.forEach(m => {
-      m.addEventListener('mouseenter', ()=> { const t = m.querySelector('.marquee-track'); if(t) t.style.animationPlayState='paused'; });
+      m.addEventListener('mouseenter', ()=> { const t = m.querySelector('.marquee-track'); if(t) t.style.animationPlayState='none'; });
       m.addEventListener('mouseleave', ()=> { const t = m.querySelector('.marquee-track'); if(t) t.style.animationPlayState='running'; });
     });
   })();
