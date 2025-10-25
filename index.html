@@ -116,8 +116,8 @@
   .hero-right img{width:100%;height:100%;max-height:600px;object-fit:cover;border-radius:18px;display:block;box-shadow:0 28px 60px rgba(0,0,0,0.6); transition: box-shadow 0.3s ease, transform 0.3s ease;}
   .hero-right img:hover {box-shadow:0 35px 70px rgba(0,0,0,0.7); transform: scale(1.02);} 
 
-  .section-title{margin:56px 0 18px;text-align:center; opacity: 0; animation: fadeIn 1s ease forwards 0.5s; position:relative;z-index: 1;}
-  .section-title .s1{font-family:'Great Vibes', cursive;font-size:clamp(48px,8vw,120px);color:var(--accent);letter-spacing:1px}
+  .section-title{margin:0px 0 18px;text-align:center; opacity: 0; animation: fadeIn 1s ease forwards 0.5s; position:relative;z-index: 1;}
+  .section-title .s1{font-family:'Great Vibes', cursive;font-size:clamp(48px,8vw,120px);color:var(--accent);letter-spacing:1px;}
   .section-title .s2{font-family: 'Poppins', sans-serif;font-size:clamp(20px,2.8vw,48px);letter-spacing:6px;margin-top:-6px}
 
   .menu-tabs{display:flex;justify-content:center;gap:28px;padding:14px 0;color:#b9c1b5;border-top:1px solid rgba(255,255,255,0.10);border-bottom:1px solid rgba(255,255,255,0.10); opacity: 0; animation: fadeIn 1s ease forwards 0.7s; position: relative;}
@@ -194,8 +194,8 @@
   .more-btn{display:inline-block;margin:20px auto 60px;background:var(--accent);color:var(--panel);padding:12px 24px;border-radius:20px;text-decoration:none;font-weight:800; transition: background 0.3s ease, transform 0.3s ease;} .more-btn:hover {background: var(--accent-hover); transform: translateY(-3px);} 
 
   /* Professional footer */
-  footer{margin-top:30px;color:#e9f1ea;}
-  .footer-wrap{margin:0 auto;padding:36px 24px;border-radius:14px;}
+  footer{color:#e9f1ea;margin-top: -100px;}
+  .footer-wrap{margin:0 auto;padding:0px 24px;border-radius:14px;}
   .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:start}
   .footer-brand{font-family:'Playfair',serif;font-weight:900;font-size:22px;color:var(--accent)}
   .footer-contact small, .footer-hours small{display:block;color:#cfe0cf}
@@ -220,7 +220,7 @@
 
   @media (max-width:1000px){
     .brand-section{ background-position: left center; }
-    .brand-section .big-brand h2{ font-size: clamp(36px, 10vw, 64px); }
+    .brand-section .big-brand h2{ font-size: clamp(64px, 12vw, 80px); }
     .brand-section .lead{ margin-bottom: 18px; font-size: clamp(13px, 2.6vw, 16px); }
   }
 
@@ -233,7 +233,7 @@
     --gallery-item-size: 240px;
     --gallery-gap: 20px;
     --carousel-duration: 20s;
-    --marquee-duration: 10s;
+    --marquee-duration: 20s;
     --marquee-gap: 18px;
   }
 
@@ -347,14 +347,14 @@
   .AllMenu button{margin-left:0;margin-top:8px;background: var(--accent); color: var(--panel); padding: 8px 22px; border: none; border-radius: 20px; font-weight: 800; font-size: clamp(14px, 3.2vw, 16px); cursor: pointer; transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;}
 
   /* Big brand / identidade */
-  .big-brand h2{font-size: clamp(36px, 10vw, 64px)}
-  .big-brand h3{font-size: clamp(16px, 4vw, 28px); margin-top:-8px; letter-spacing:5px}
+  .big-brand h2{font-size: clamp(64px, 12vw, 80px);}
+  .big-brand h3{font-size: clamp(20px, 5vw, 34px); margin-top:-8px; letter-spacing:5px}
 
   /* Lead / texto introdutório */
   .lead{text-align:center;color:#bfcfbd;max-width:680px;margin:14px auto;font-size: clamp(13px, 2.6vw, 16px);} 
 
   /* Carousel mais compacto */
-  :root{ --gallery-item-size: 180px; --gallery-gap: 10px; --carousel-duration: 15s; }
+  :root{ --gallery-item-size: 180px; --gallery-gap: 10px; --carousel-duration: 25s; }
 
   /* Footer becomes stacked */
   .footer-grid{grid-template-columns:1fr;}
@@ -370,7 +370,7 @@
   .panda-badge{ position: absolute; left:260px; top: -50px; width: clamp(130px, 10vw, 84px); opacity:0.95; pointer-events:none; z-index:6; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.45)); }
   /* garante que o botão "Ver Todo Menu" fica centrado e com margem reduzida */
   .AllMenu{display:flex;flex-direction:column;gap:12px;align-items:center}
-  .AllMenu button{margin-left:0}
+  .AllMenu button{margin-left:0; margin-bottom: -150px;}
 
   /* ajusta itens do menu para centro e largura confortável em mobile */
   .menu-item{max-width:340px;padding:16px}
@@ -378,7 +378,7 @@
 
   /* ---------------- MARQUEE: mais fino e texto menor em mobile ---------------- */
   #marquee1{margin-bottom: -10px;}
-  .marquee{ position:relative; overflow:hidden; border-radius:8px; background:var(--accent); padding:6px 0; 
+  .marquee{position:relative; overflow:hidden; border-radius:8px; background:var(--accent); padding:6px 0; 
     margin-top:12px; color:var(--panel); font-weight:700; font-size: clamp(12px, 2.8vw, 14px);  line-height:1; }
   .marquee-track{display:inline-block;white-space:nowrap;will-change:transform;animation:marquee var(--marquee-duration) linear infinite}
   .marquee-item{display:inline-block;margin-right:var(--marquee-gap);padding:4px 10px;font-size: 11px;}
