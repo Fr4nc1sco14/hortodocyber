@@ -39,9 +39,6 @@
     --carousel-duration: 30s;
 
     --nav-height: 72px; /* usado para espaçamento do menu mobile */
-
-    --marquee-duration: 18s; /* padrão para desktop */
-    --marquee-gap: 40px;
   }
 
   /* Prevent any accidental horizontal scroll (main fix) */
@@ -153,6 +150,7 @@
   /* VIDEO: estilos para que o vídeo se comporte como a imagem anterior */
   .wide-image video{
     display:block;
+    margin: auto 0;
     width:100%;
     height:100%;
     max-height:600px;
@@ -162,13 +160,6 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-
-  /* Improved marquee: continuous, responsive speed */
-  .marquee{position:relative;overflow:hidden;border-radius:10px;background:var(--accent);
-    padding:8px 0;margin-top:14px;color:var(--panel);font-weight:800}
-  .marquee-track{display:inline-block;white-space:nowrap;will-change:transform;animation:marquee var(--marquee-duration) linear infinite}
-  .marquee-item{display:inline-block;margin-right:var(--marquee-gap);padding:6px 12px}
-  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   .gallery{Padding:44px 0; opacity: 0; animation: fadeIn 1s ease forwards 2.1s;} 
   .gallery p{max-width:820px;margin:8px auto 28px;color:#c9d7c8;text-align:center;font-size:var(--lead-size)}
@@ -211,8 +202,6 @@
   background-position: center center; background-repeat: no-repeat; overflow: hidden; }
   .brand-section::before{ content: "";position: absolute; inset: 0;background: linear-gradient(180deg, rgba(6,12,8,0.55), rgba(6,12,8,0.55)); z-index: 0;}
   .brand-section > * { position: relative; z-index: 1; }
-  .brand-section .marquee{ background: #c7b79a; color: #e9f1ea; font-weight:700;}
-  .brand-section .marquee .marquee-item{ color: #e9f1ea; opacity: 0.95; }
   .brand-section .big-brand h2{ color: var(--accent); text-shadow: 0 6px 18px rgba(0,0,0,0.6); }
   .brand-section .big-brand h3{ color: #e9f1ea; opacity: 0.95; text-shadow: 0 4px 12px rgba(0,0,0,0.5); }
   .brand-section .lead { color: #dfe9dc; max-width: 880px; margin: 16px auto 34px; }
@@ -233,8 +222,6 @@
     --gallery-item-size: 240px;
     --gallery-gap: 20px;
     --carousel-duration: 20s;
-    --marquee-duration: 20s;
-    --marquee-gap: 18px;
   }
 
   .wrap{padding:24px 18px 100px}
@@ -376,13 +363,6 @@
   .menu-item{max-width:340px;padding:16px}
   .menu-item h4{font-size:16px}
 
-  /* ---------------- MARQUEE: mais fino e texto menor em mobile ---------------- */
-  #marquee1{margin-bottom: -10px;}
-  .marquee{position:relative; overflow:hidden; border-radius:8px; background:var(--accent); padding:6px 0; 
-    margin-top:12px; color:var(--panel); font-weight:700; font-size: clamp(12px, 2.8vw, 14px);  line-height:1; }
-  .marquee-track{display:inline-block;white-space:nowrap;will-change:transform;animation:marquee var(--marquee-duration) linear infinite}
-  .marquee-item{display:inline-block;margin-right:var(--marquee-gap);padding:4px 10px;font-size: 11px;}
-
   /* suaviza a visibilidade da barra de scroll nos browsers que suportam */
   .menu-tabs::-webkit-scrollbar{height:8px}
   .menu-tabs::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.25);border-radius:8px}
@@ -494,23 +474,10 @@
         </div>
         <p id="BigBrandP" class="lead">Vem conhecer-nos! Acreditamos que os melhores momentos nascem de boas conversas, da música certa e, quem sabe, de um copo na mão. Um espaço para relaxar, partilhar e conviver, sempre com boa energia.</p>
 
-        <!-- improved marquee: duplicates content for continuous scroll -->
-        <div class="marquee" id="marquee1" role="status" aria-live="polite">
-          <div class="marquee-track" aria-hidden="true">
-            <span class="marquee-item">• Vem viver momentos que ficam na memória</span>
-            <span class="marquee-item">• Descobre sabores únicos e boa energia</span>
-            <span class="marquee-item">• Relaxa, partilha e brinda com amigos</span>
-            <span class="marquee-item">• Vem viver momentos que ficam na memória</span>
-            <span class="marquee-item">• Descobre sabores únicos e boa energia</span>
-            <span class="marquee-item">• Relaxa, partilha e brinda com amigos</span>
-          </div>
-        </div>
-
         <!-- substituição: imagem -> vídeo (autoplay silencioso, loop, playsinline)
              inclui fallback <img> para browsers que não suportem vídeo -->
         <div class="wide-image">
-          <video
-            class="brand-video"
+          <video class="brand-video"
             autoplay
             muted
             loop
@@ -525,17 +492,7 @@
             O teu browser não suporta vídeo HTML5.
           </video>
         </div>
-
-        <div class="marquee" role="status" aria-live="polite">
-          <div class="marquee-track" aria-hidden="true">
-            <span class="marquee-item">• Vem viver momentos que ficam na memória</span>
-            <span class="marquee-item">• Descobre sabores únicos e boa energia</span>
-            <span class="marquee-item">• Relaxa, partilha e brinda com amigos</span>
-            <span class="marquee-item">• Vem viver momentos que ficam na memória</span>
-            <span class="marquee-item">• Descobre sabores únicos e boa energia</span>
-            <span class="marquee-item">• Relaxa, partilha e brinda com amigos</span>
-          </div>
-        </div>
+        
         </div>
       </section>
       <!-- ====================== FIM DA NOVA SECÇÃO ====================== -->
@@ -698,15 +655,6 @@
       if(window.matchMedia('(min-width:1001px)').matches){ closeMenu(); }
     });
 
-  })();
-
-  // Ensure marquee pauses on hover for better UX
-  (function(){
-    const marquees = document.querySelectorAll('.marquee');
-    marquees.forEach(m => {
-      m.addEventListener('mouseenter', ()=> { const t = m.querySelector('.marquee-track'); if(t) t.style.animationPlayState='none'; });
-      m.addEventListener('mouseleave', ()=> { const t = m.querySelector('.marquee-track'); if(t) t.style.animationPlayState='running'; });
-    });
   })();
 
   // Video behaviour: respect prefers-reduced-motion and mobile (pausa para salvar dados)
