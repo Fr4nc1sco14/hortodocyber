@@ -108,7 +108,7 @@
   .hero h1{ font-family: 'Poppins', system-ui; text-transform:uppercase;font-weight:900;font-size:var(--h1-size);margin:6px 0 10px;line-height:0.95;color:#f4f0e8}
   .hero p{max-width:550px;color:#c9d7c8;margin-top:12px;font-size:var(--lead-size)}
   .cta{display:inline-block;margin-top:18px;padding:14px 22px;border-radius:20px;background:var(--accent);color:var(--panel);font-weight:800;text-decoration:none;font-size:18px; transition: background 0.3s ease, transform 0.3s ease;}
-  .cta:hover {background: var(--accent-hover); transform: translateY(-2px);} .cta:focus{outline:3px solid rgba(214,173,133,0.25)}
+  .cta:hover {background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(214,173,133,0.3);}
 
   .hero-right img{width:100%;height:100%;max-height:600px;object-fit:cover;border-radius:18px;display:block;box-shadow:0 28px 60px rgba(0,0,0,0.6); transition: box-shadow 0.3s ease, transform 0.3s ease;}
   .hero-right img:hover {box-shadow:0 35px 70px rgba(0,0,0,0.7); transform: scale(1.02);} 
@@ -126,6 +126,8 @@
 
   /* Panda badge repositioned to the right (prevents overflow) */
   .panda-badge { z-index: 9999; position: absolute; left: 90%; top: 20px; width: clamp(200px, 6vw, 88px); height: auto; pointer-events: none; display: block; }
+  .panda-footer { z-index: 9999; position: absolute; left: 5%; top: -82px; width: clamp(200px, 6vw, 88px); height: auto; 
+      pointer-events: none; display: block; }
 
   .menu-tabs a{font-size:18px;text-decoration:none;color:#cfe0cf;padding:8px 10px;border-radius:10px; transition: background 0.3s ease;} .menu-tabs a:hover, .menu-tabs a:focus{background:rgba(255,255,255,0.02)}
 
@@ -191,7 +193,8 @@
 
   .gallery .carousel + .carousel { margin-top: 24px;}
 
-  .more-btn{display:inline-block;margin:20px auto 60px;background:var(--accent);color:var(--panel);padding:12px 24px;border-radius:20px;text-decoration:none;font-weight:800; transition: background 0.3s ease, transform 0.3s ease;} .more-btn:hover {background: var(--accent-hover); transform: translateY(-3px);} 
+  .more-btn{display:inline-block;margin:20px auto 60px;background:var(--accent);color:var(--panel);padding:12px 24px;border-radius:20px;text-decoration:none;font-weight:800; transition: background 0.3s ease, transform 0.3s ease;} 
+  .more-btn:hover {background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(214,173,133,0.3);} 
 
   /* ========================= FOOTER (ATUALIZADO) =========================
      Só mexi nas regras abaixo e no HTML do footer (resto do ficheiro mantido)
@@ -275,7 +278,7 @@
   }
 
   .footer-links{ display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
-  .footer-links a{ color: rgba(255,255,255,0.95); text-decoration:none; font-size:13px; letter-spacing:0.6px; }
+  .footer-links a{ color: rgba(255,255,255,0.95); text-decoration:none; font-size:13px; letter-spacing:0.6px;font-weight: bold;}
   .footer-links a:hover{ text-decoration:underline; }
 
   .footer-line {
@@ -462,6 +465,7 @@
 
   /* PANDA: menos intrusivo, sobrepõe a border sem bloquear interação */
   .panda-badge{ position: absolute; left:260px; top: -50px; width: clamp(130px, 10vw, 84px); opacity:0.95; pointer-events:none; z-index:6; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.45)); }
+  .panda-footer{position: absolute;left: 100px;top: -84px;}
   /* garante que o botão "Ver Todo Menu" fica centrado e com margem reduzida */
   .AllMenu{display:flex;flex-direction:column;gap:12px;align-items:center}
   .AllMenu button{margin-left:0; margin-bottom: -150px;}
@@ -652,13 +656,14 @@
         </div>
 
 
-        <div style="text-align:center; margin-top: 20px;"><a class="more-btn" href="#">Mais Momentos</a></div>
+        <div style="text-align:center; margin-top: 20px;"><a class="more-btn" href="https://www.instagram.com/hortodocyber?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Mais Momentos</a></div>
       </section>
     </main>
   </div>
 
     <!-- Professional footer (ATUALIZADO) -->
     <footer id="footer" aria-labelledby="footer-title">
+      <img class="panda-footer" src="assets/images/pandas/PandaFooter.png" alt="Panda faminto" aria-hidden="true" loading="lazy">
       <div class="wrap-footer">
         <div class="footer-inner">
           <hr class="footer-line">
