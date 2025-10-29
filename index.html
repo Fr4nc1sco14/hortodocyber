@@ -788,33 +788,71 @@
   })();
 
   // Video behaviour: respect prefers-reduced-motion and mobile (pausa para salvar dados)
-  (function(){
+  (function () {
     const video = document.querySelector('.brand-video');
+    if (!video) return;
+
+    // garantia — alguns browsers precisam disto no JS antes do play()
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', ''); // redundância para iOS
+    video.setAttribute('muted', '');       // redundância no DOM
+
+    // preferências do utilizador / rede
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
+    const saveData = connection && connection.saveData;
+
+    // se o utilizador prefere menos movimento, não autoplay
+    if (prefersReduced) {
+      video.pause();
+      video.removeAttribute('autoplay');
+      return;
+    }
+
+    // Se save-data estiver ativo, não forçar autoplay (economia de dados)
+    if (saveData) {
+      video.pause();
+      video.removeAttribute('autoplay');
+      return;
+    }
+
+    // Tenta reproduzir apenas quando o vídeo entra suficientemente na viewport
+    // (e pausa quando sai para poupar CPU/bateria)
     try {
-      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      // Se utilizador prefere menos movimento, parar autoplay
-      if (video && prefersReduced) {
-        video.pause();
-        video.removeAttribute('autoplay');
-      }
-      // Em ecrãs pequenos, pausa por defeito para economizar dados móveis
-      if (video && window.innerWidth <= 520) {
-        video.pause();
-      }
-      // Força reprodução quando user interage (clicar/play)
-      if (video) {
-        video.addEventListener('click', function(){
-          if (video.paused) {
-            video.play();
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            // tenta play; pode falhar (política do browser) — capturamos a promise
+            video.play().catch((err) => {
+              // autoplay bloqueado pelo browser — mantemos supressão de erro
+              // podes mostrar um botão "play" visível nestes casos se quiseres
+              // console.debug('Autoplay não permitido:', err);
+            });
           } else {
-            video.pause();
+            // pause quando não está visível (opcional, melhora bateria)
+            if (!video.paused) video.pause();
           }
         });
-      }
+      }, { threshold: [0.5] });
+
+      io.observe(video);
     } catch (e) {
-      // silencioso — não bloquear resto do script
-      console.warn('video control: ', e);
+      // Se IntersectionObserver não estiver disponível, tenta play logo
+      video.play().catch(()=>{/* ignorar */});
     }
+
+    // Toggle por clique — deixa o utilizador controlar
+    video.addEventListener('click', () => {
+      if (video.paused) {
+        video.play().catch(()=>{/* ignorar */});
+      } else {
+        video.pause();
+      }
+    });
+
+    // Opcional: mostrar poster enquanto não reproduz (melhora UX)
+    // <video poster="assets/images/HERO.png" ...> no HTML
   })();
 
   /* ===================== NOVO: LÓGICA DE TABS PARA MUDAR O MENU DINAMICAMENTE ===================== */
