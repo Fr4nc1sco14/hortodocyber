@@ -57,7 +57,7 @@
 
 
     <main id="main">
-      <section class="hero" id="sobre" aria-labelledby="hero-title">
+      <section class="hero animate-on-scroll" id="sobre" aria-labelledby="hero-title">
         <div class="hero-left">
           <div class="kicker">Descobre o</div>
           <h1 id="hero-title">Horto<br/>Do Cyber</h1>
@@ -73,13 +73,13 @@
         </div>
       </section>
 
-      <div class="section-title" id="menu">
+      <div class="section-title animate-on-scroll" id="menu">
           <h1 class="s2">NOSSO MENU</h1>
                   <img class="panda-badge" src="assets/images/pandas/hugryPanda.png" alt="Panda faminto" aria-hidden="true" loading="lazy">
       </div>
 
       <!-- TABS: convertidas para botões com roles de acessibilidade (tablist) -->
-      <nav class="menu-tabs" role="tablist" aria-label="Categorias do menu">
+      <nav class="menu-tabs animate-on-scroll" role="tablist" aria-label="Categorias do menu">
         <button role="tab" aria-selected="true" tabindex="0" data-cat="cocktail">Cocktail</button>
         <button role="tab" aria-selected="false" tabindex="-1" data-cat="petiscos">Petiscos</button>
         <button role="tab" aria-selected="false" tabindex="-1" data-cat="sobremesas">Sobremesas</button>
@@ -87,7 +87,7 @@
       </nav>
 
       <!-- Grid que será atualizado dinamicamente (aria-live para leitores de ecrã) -->
-      <section class="menu-grid" aria-label="Pratos em destaque" id="menuGrid" aria-live="polite">
+      <section class="menu-grid animate-on-scroll" aria-label="Pratos em destaque" id="menuGrid" aria-live="polite">
         <!-- Conteúdo inicial (cocktail por defeito) -->
         <article class="menu-item">
           <div class="thumb"><img src="assets/images/Menu/cocktail1.png" alt="Cocktail 1" loading="lazy"></div>
@@ -110,7 +110,7 @@
         </article>
       </section>
 
-      <div class="AllMenu">
+      <div class="AllMenu animate-on-scroll">
         <h2>Ficaste Interessado e queres ver mais?</h2>
         <button>Ver Todo Menu</button>
       </div>
@@ -119,15 +119,15 @@
 
       <section class="brand-section" aria-label="Identidade Horto Cyber">
         <div class="wrap">
-        <div class="big-brand">
+        <div class="big-brand animate-on-scroll">
           <h2>Horto</h2>
           <h3>Cyber</h3>
         </div>
-        <p id="BigBrandP" class="lead">Vem conhecer-nos! Acreditamos que os melhores momentos nascem de boas conversas, da música certa e, quem sabe, de um copo na mão. Um espaço para relaxar, partilhar e conviver, sempre com boa energia.</p>
+        <p id="BigBrandP" class="lead animate-on-scroll">Vem conhecer-nos! Acreditamos que os melhores momentos nascem de boas conversas, da música certa e, quem sabe, de um copo na mão. Um espaço para relaxar, partilhar e conviver, sempre com boa energia.</p>
 
         <!-- substituição: imagem -> vídeo (autoplay silencioso, loop, playsinline)
              inclui fallback <img> para browsers que não suportem vídeo -->
-        <div class="wide-image">
+        <div class="wide-image animate-on-scroll">
           <video class="brand-video"
             autoplay
             muted
@@ -149,7 +149,7 @@
 
 
       <div class="wrap">
-      <section class="gallery" id="galeria" aria-labelledby="galeria-title">
+      <section class="gallery animate-on-scroll" id="galeria" aria-labelledby="galeria-title">
         <div class="section-title">
           <span class="s1">Galeria</span><br>
           <span class="s2" id="galeria-title">De Momentos</span>
@@ -576,6 +576,23 @@
 
     if(tabs.length) activateTab(tabs[0]);
 
+  })();
+
+  /* ================= SCROLL-BASED ANIMATIONS ================= */
+  (function() {
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    if (animateElements.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Animate only once
+        }
+      });
+    }, { threshold: 0.1 }); // Trigger when 10% of element is visible
+
+    animateElements.forEach(el => observer.observe(el));
   })();
   </script>
 
